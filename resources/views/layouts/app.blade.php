@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 
@@ -83,7 +84,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-4 control-label" >Content</label>
+                        <label for="password" class="col-md-4 control-label">Content</label>
                         <div class="col-md-6">
                             <textarea name="content" id="input" class="form-control" rows="3" required="required"></textarea>  
                         </div>
@@ -151,7 +152,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li><a data-toggle="modal" href='#modal-id'><i class="fa fa-btn fa-envelope-o"></i>Send Contact</a></li>
-                            <li><a data-toggle="modal" href="{{url('test')}}"><i class="fa fa-btn fa-envelope-o"></i>See Contact</a></li>
+                            <li><a data-toggle="modal" href="{{url('test')}}"><i class="fa fa-btn fa-comment"></i>See Contact</a></li>
                             
                         </ul>
                     </li>
@@ -190,52 +191,8 @@
     <script type="text/javascript" scr ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js">
         
     </script>
-    <script type="text/javascript">
-        $(function(){
-            // $('#btn_send').click(function(e){
-            //     alert("Hoa");
-            //     send();
-            //     return false;
-            // });    
-            $('#myform').bootstrapValidator({
-                message: 'This value is not valid',
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    name: {
-                        message: 'The username is not valid',
-                        validators: {
-                            notEmpty: {
-                                message: 'The username is required and cannot be empty'
-                            },
-                            stringLength: {
-                                min: 6,
-                                max: 30,
-                                message: 'The username must be more than 6 and less than 30 characters long'
-                            },
-                            regexp: {
-                                regexp: /^[a-zA-Z0-9_]+$/,
-                                message: 'The username can only consist of alphabetical, number and underscore'
-                            }
-                        }
-                    },
-                    email: {
-                        validators: {
-                            notEmpty: {
-                                message: 'The email is required and cannot be empty'
-                            },
-                            emailAddress: {
-                                message: 'The input is not a valid email address'
-                            }
-                        }
-                    }
-                }
-            });      
-        });
-    </script>
+    <script type="text/javascript" src="js/run.js"></script>   
+
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

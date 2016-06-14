@@ -22,16 +22,16 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::guest()){
-             $user = DB::table('users')->get();    
-        }
-        else {
-            $user = DB::table('users')
-                -> where('email','!=', Auth::user()->email)
-                ->get();     
-        }
-         
-        return view('welcome', ['users' => $user]);
+           $user = DB::table('users')->get();    
+       }
+       else {
+        $user = DB::table('users')
+        -> where('email','!=', Auth::user()->email)
+        ->get();     
     }
+
+    return view('welcome', ['users' => $user]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -42,6 +42,7 @@ class UserController extends Controller
     {
         //
     }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -52,10 +53,10 @@ class UserController extends Controller
     public function store(Request $request){
 
         $rules =  [
-            'name' => 'required|max:255',
-            'email' => 'required|email',
-            'phone' => 'regex:/^[0-9]*$/',
-            'content' =>'required'
+        'name' => 'required|max:255',
+        'email' => 'required|email',
+        'phone' => 'regex:/^[0-9]*$/',
+        'content' =>'required'
         ];
         $validator = Validator::make($request->all(),$rules);
         
@@ -71,23 +72,24 @@ class UserController extends Controller
             $contact->phone = $request->phone;
             $contact->content = $request->content;  
             $contact->receiver = $request->receiver;        
-            $contact->save();
-            return view('tada');
+            $contact->save();            
+                $data = array(
+                    'name' => $contact->name,
+                );
+            
+            //dd($mail);
+            Mail::send('emails.test', $data, function ($message) use($contact) {
+               // $message->from("MAIL_USERNAME", 'Test Demo');
+                $message->to($contact->receiver)->subject('You have unseen notifications');
+            });
+            return view('SendDone');
+            //return view('tada');
             //dd('test');                 
         }
         
     }
 
-    public function send(){
-        $data = array(
-            'name' => Auth::user()->name,
-        );
-        Mail::send('emails.test', $data, function ($message) {
-           // $message->from("MAIL_USERNAME", 'Test Demo');
-            $message->to(Auth::user()->email)->subject('Ta da');
-        });
-        return view('SendDone');
-    }
+
 
     /**
      * Display the specified resource.
