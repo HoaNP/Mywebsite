@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'thehungergamesfu@gmail.com', 'name' => 'Haha'],
+    'from' => ['address' => 'demo.server0123@gmail.com', 'name' => 'Admin'],
 
     /*
     |--------------------------------------------------------------------------

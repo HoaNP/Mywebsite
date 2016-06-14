@@ -20,4 +20,3 @@ Route::get('/edit', 'HomeController@edit');
 Route::post('/update', 'HomeController@update');
 Route::get('/test', 'HomeController@test');
 Route::post('/store', 'UserController@store');
-Route::get('/send', 'UserController@send');

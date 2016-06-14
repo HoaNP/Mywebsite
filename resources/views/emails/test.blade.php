@@ -1,1 +1,1 @@
-Hey {{$name}}, Welcome to our website. <br>
+You got a message form {{$name}} <br>
